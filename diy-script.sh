@@ -23,8 +23,8 @@ rm -rf feeds/luci/applications/luci-app-dockerman
 
 # 添加额外软件包
 git clone --depth 1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
-git clone --depth 1 https://github.com/tty228/luci-app-serverchan package/luci-app-serverchan
-git clone --depth 1 https://github.com/iwrt/luci-app-ikoolproxy package/luci-app-ikoolproxy
+git clone --depth 1 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
+git clone --depth 1 https://github.com/ilxp/luci-app-ikoolproxy package/luci-app-ikoolproxy
 git clone --depth 1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
 git clone --depth 1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone --depth 1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
@@ -34,29 +34,29 @@ svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-
 svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-eqos package/luci-app-eqos
 
 # 科学上网插件
-git clone --depth 1 https://github.com/jerrykuku/luci-app-vssr package/luci-app-vssr
+git clone --depth 1 https://github.com/MilesPoupart/luci-app-vssr package/luci-app-vssr
 git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb package/lua-maxminddb
 svn co https://github.com/vernesong/OpenClash/trunk/luci-app-openclash package/luci-app-openclash
-svn co https://github.com/xiaorouji/openwrt-passwall/branches/luci/luci-app-passwall package/luci-app-passwall
-svn co https://github.com/xiaorouji/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/branches/luci/luci-app-passwall package/luci-app-passwall
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall2/trunk/luci-app-passwall2 package/luci-app-passwall2
 svn co https://github.com/fw876/helloworld/trunk/luci-app-ssr-plus package/luci-app-ssr-plus
 
 # 科学上网插件依赖
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/brook package/brook
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/chinadns-ng package/chinadns-ng
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/dns2socks package/dns2socks
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/dns2tcp package/dns2tcp
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/hysteria package/hysteria
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ipt2socks package/ipt2socks
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/microsocks package/microsocks
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/naiveproxy package/naiveproxy
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/pdnsd-alt package/pdnsd-alt
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/sagernet-core package/sagernet-core
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/ssocks package/ssocks
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/tcping package/tcping
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-go package/trojan-go
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/trojan-plus package/trojan-plus
-svn co https://github.com/xiaorouji/openwrt-passwall/trunk/v2ray-geodata package/v2ray-geodata
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/brook package/brook
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/chinadns-ng package/chinadns-ng
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/dns2socks package/dns2socks
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/dns2tcp package/dns2tcp
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/hysteria package/hysteria
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/ipt2socks package/ipt2socks
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/microsocks package/microsocks
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/naiveproxy package/naiveproxy
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/pdnsd-alt package/pdnsd-alt
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/sagernet-core package/sagernet-core
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/ssocks package/ssocks
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/tcping package/tcping
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/trojan-go package/trojan-go
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/trojan-plus package/trojan-plus
+svn co https://github.com/Openwrt-Passwall/openwrt-passwall/trunk/v2ray-geodata package/v2ray-geodata
 svn co https://github.com/fw876/helloworld/trunk/simple-obfs package/simple-obfs
 svn co https://github.com/fw876/helloworld/trunk/v2ray-core package/v2ray-core
 svn co https://github.com/fw876/helloworld/trunk/v2ray-plugin package/v2ray-plugin
