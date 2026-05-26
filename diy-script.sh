@@ -46,26 +46,32 @@ rm -rf package/luci-app-ssr-plus-src
 # PassWall 依赖包 (从 openwrt-passwall-packages 仓库克隆)
 git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall-packages
 # 从克隆的仓库中复制依赖包
-cp -r package/openwrt-passwall-packages/chinadns-ng package/
-cp -r package/openwrt-passwall-packages/dns2socks package/
-cp -r package/openwrt-passwall-packages/hysteria package/
-cp -r package/openwrt-passwall-packages/ipt2socks package/
-cp -r package/openwrt-passwall-packages/microsocks package/
-cp -r package/openwrt-passwall-packages/naiveproxy package/
-cp -r package/openwrt-passwall-packages/shadow-tls package/
-cp -r package/openwrt-passwall-packages/shadowsocks-libev package/
-cp -r package/openwrt-passwall-packages/shadowsocks-rust package/
-cp -r package/openwrt-passwall-packages/shadowsocksr-libev package/
-cp -r package/openwrt-passwall-packages/simple-obfs package/
-cp -r package/openwrt-passwall-packages/sing-box package/
-cp -r package/openwrt-passwall-packages/tcping package/
-cp -r package/openwrt-passwall-packages/trojan-plus package/
-cp -r package/openwrt-passwall-packages/tuic-client package/
-cp -r package/openwrt-passwall-packages/v2ray-geodata package/
-cp -r package/openwrt-passwall-packages/v2ray-plugin package/
-cp -r package/openwrt-passwall-packages/xray-core package/
-cp -r package/openwrt-passwall-packages/xray-plugin package/
+mv package/openwrt-passwall-packages/* package/ 2>/dev/null || true
 rm -rf package/openwrt-passwall-packages
+
+# SSR-Plus 依赖包 (从 helloworld 仓库)
+git clone --depth 1 https://github.com/fw876/helloworld package/helloworld-src
+mv package/helloworld-src/simple-obfs package/ 2>/dev/null || true
+mv package/helloworld-src/v2ray-core package/ 2>/dev/null || true
+mv package/helloworld-src/v2ray-plugin package/ 2>/dev/null || true
+mv package/helloworld-src/shadowsocks-rust package/ 2>/dev/null || true
+mv package/helloworld-src/shadowsocksr-libev package/ 2>/dev/null || true
+mv package/helloworld-src/xray-core package/ 2>/dev/null || true
+mv package/helloworld-src/xray-plugin package/ 2>/dev/null || true
+mv package/helloworld-src/lua-neturl package/ 2>/dev/null || true
+mv package/helloworld-src/trojan package/ 2>/dev/null || true
+mv package/helloworld-src/redsocks2 package/ 2>/dev/null || true
+mv package/helloworld-src/dns2socks package/ 2>/dev/null || true
+mv package/helloworld-src/dns2tcp package/ 2>/dev/null || true
+mv package/helloworld-src/microsocks package/ 2>/dev/null || true
+mv package/helloworld-src/tcping package/ 2>/dev/null || true
+mv package/helloworld-src/ipt2socks package/ 2>/dev/null || true
+rm -rf package/helloworld-src
+
+# 删除 feeds 中可能存在的旧版本 PassWall，避免依赖冲突
+rm -rf feeds/luci/applications/luci-app-passwall 2>/dev/null || true
+rm -rf feeds/luci/applications/luci-app-passwall2 2>/dev/null || true
+rm -rf feeds/luci/applications/luci-app-ssr-plus 2>/dev/null || true
 
 # Themes
 git clone --depth 1 -b 18.06 https://github.com/kiddin9/luci-theme-edge package/luci-theme-edge
