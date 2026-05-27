@@ -1,7 +1,6 @@
 #!/bin/bash
 #===============================================
 # Description: DIY script
-# File name: diy-script.sh
 # Lisence: MIT
 # Author: P3TERX
 # Blog: https://p3terx.com
@@ -29,9 +28,21 @@ git clone --depth 1 https://github.com/esirplayground/luci-app-poweroff package/
 git clone --depth 1 https://github.com/destan19/OpenAppFilter package/OpenAppFilter
 git clone --depth 1 https://github.com/Jason6111/luci-app-netdata package/luci-app-netdata
 git clone --depth 1 -b lede https://github.com/pymumu/luci-app-smartdns package/luci-app-smartdns
-svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser package/luci-app-filebrowser
-svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman package/luci-app-dockerman
-svn co https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-eqos package/luci-app-eqos
+
+# filebrowser
+git clone --depth 1 https://github.com/Lienol/openwrt-package package/Lienol-packages
+mv package/Lienol-packages/luci-app-filebrowser package/ 2>/dev/null || true
+rm -rf package/Lienol-packages
+
+# dockerman
+git clone --depth 1 https://github.com/lisaac/luci-app-dockerman package/lisaac-dockerman
+mv package/lisaac-dockerman/applications/luci-app-dockerman package/ 2>/dev/null || true
+rm -rf package/lisaac-dockerman
+
+# eqos
+git clone --depth 1 -b openwrt-18.06 https://github.com/immortalwrt/luci package/immortalwrt-luci
+mv package/immortalwrt-luci/applications/luci-app-eqos package/ 2>/dev/null || true
+rm -rf package/immortalwrt-luci
 
 # 科学上网插件
 git clone --depth 1 https://github.com/MilesPoupart/luci-app-vssr package/luci-app-vssr
@@ -39,36 +50,18 @@ git clone --depth 1 https://github.com/jerrykuku/lua-maxminddb package/lua-maxmi
 git clone --depth 1 https://github.com/vernesong/OpenClash package/luci-app-openclash
 git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall package/luci-app-passwall
 git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall2 package/luci-app-passwall2
-git clone --depth 1 https://github.com/fw876/helloworld package/luci-app-ssr-plus-src
-mv package/luci-app-ssr-plus-src/luci-app-ssr-plus package/
-rm -rf package/luci-app-ssr-plus-src
 
-# PassWall 依赖包 (从 openwrt-passwall-packages 仓库克隆)
-git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/openwrt-passwall-packages
-# 从克隆的仓库中复制依赖包
-mv package/openwrt-passwall-packages/* package/ 2>/dev/null || true
-rm -rf package/openwrt-passwall-packages
-
-# SSR-Plus 依赖包 (从 helloworld 仓库)
+# SSR-Plus
 git clone --depth 1 https://github.com/fw876/helloworld package/helloworld-src
-mv package/helloworld-src/simple-obfs package/ 2>/dev/null || true
-mv package/helloworld-src/v2ray-core package/ 2>/dev/null || true
-mv package/helloworld-src/v2ray-plugin package/ 2>/dev/null || true
-mv package/helloworld-src/shadowsocks-rust package/ 2>/dev/null || true
-mv package/helloworld-src/shadowsocksr-libev package/ 2>/dev/null || true
-mv package/helloworld-src/xray-core package/ 2>/dev/null || true
-mv package/helloworld-src/xray-plugin package/ 2>/dev/null || true
-mv package/helloworld-src/lua-neturl package/ 2>/dev/null || true
-mv package/helloworld-src/trojan package/ 2>/dev/null || true
-mv package/helloworld-src/redsocks2 package/ 2>/dev/null || true
-mv package/helloworld-src/dns2socks package/ 2>/dev/null || true
-mv package/helloworld-src/dns2tcp package/ 2>/dev/null || true
-mv package/helloworld-src/microsocks package/ 2>/dev/null || true
-mv package/helloworld-src/tcping package/ 2>/dev/null || true
-mv package/helloworld-src/ipt2socks package/ 2>/dev/null || true
+mv package/helloworld-src/luci-app-ssr-plus package/ 2>/dev/null || true
 rm -rf package/helloworld-src
 
-# 删除 feeds 中可能存在的旧版本 PassWall，避免依赖冲突
+# PassWall 依赖包
+git clone --depth 1 https://github.com/Openwrt-Passwall/openwrt-passwall-packages package/passwall-deps
+mv package/passwall-deps/* package/ 2>/dev/null || true
+rm -rf package/passwall-deps
+
+# 删除 feeds 中可能存在的旧版本，避免依赖冲突
 rm -rf feeds/luci/applications/luci-app-passwall 2>/dev/null || true
 rm -rf feeds/luci/applications/luci-app-passwall2 2>/dev/null || true
 rm -rf feeds/luci/applications/luci-app-ssr-plus 2>/dev/null || true
@@ -79,39 +72,63 @@ git clone --depth 1 -b 18.06 https://github.com/jerrykuku/luci-theme-argon packa
 git clone --depth 1 https://github.com/jerrykuku/luci-app-argon-config package/luci-app-argon-config
 git clone --depth 1 https://github.com/thinktip/luci-theme-neobird package/luci-theme-neobird
 git clone --depth 1 https://github.com/xiaoqingfengATGH/luci-theme-infinityfreedom package/luci-theme-infinityfreedom
-svn co https://github.com/rosywrt/luci-theme-rosy/trunk/luci-theme-rosy package/luci-theme-rosy
-svn co https://github.com/haiibo/packages/trunk/luci-theme-atmaterial package/luci-theme-atmaterial
-svn co https://github.com/haiibo/packages/trunk/luci-theme-opentomcat package/luci-theme-opentomcat
-svn co https://github.com/haiibo/packages/trunk/luci-theme-netgear package/luci-theme-netgear
+
+# haiibo 主题包
+git clone --depth 1 https://github.com/haiibo/packages package/haiibo-packages
+mv package/haiibo-packages/luci-theme-atmaterial package/ 2>/dev/null || true
+mv package/haiibo-packages/luci-theme-opentomcat package/ 2>/dev/null || true
+mv package/haiibo-packages/luci-theme-netgear package/ 2>/dev/null || true
+mv package/haiibo-packages/luci-theme-rosy package/ 2>/dev/null || true
+rm -rf package/haiibo-packages
 
 # 晶晨宝盒
-svn co https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
+git clone --depth 1 https://github.com/ophub/luci-app-amlogic package/luci-app-amlogic
 sed -i "s|https.*/OpenWrt|https://github.com/haiibo/OpenWrt|g" package/luci-app-amlogic/root/etc/config/amlogic
 sed -i "s|opt/kernel|https://github.com/ophub/kernel/tree/main/pub/stable|g" package/luci-app-amlogic/root/etc/config/amlogic
 sed -i "s|ARMv8|ARMv8_PLUS|g" package/luci-app-amlogic/root/etc/config/amlogic
 
 # MosDNS
-svn co https://github.com/sbwml/luci-app-mosdns/trunk/luci-app-mosdns package/luci-app-mosdns
-svn co https://github.com/sbwml/luci-app-mosdns/trunk/mosdns package/mosdns
+git clone --depth 1 https://github.com/sbwml/luci-app-mosdns package/mosdns-src
+mv package/mosdns-src/luci-app-mosdns package/ 2>/dev/null || true
+mv package/mosdns-src/mosdns package/ 2>/dev/null || true
+mv package/mosdns-src/v2dat package/ 2>/dev/null || true
+rm -rf package/mosdns-src
 
 # DDNS.to
-svn co https://github.com/linkease/nas-packages-luci/trunk/luci/luci-app-ddnsto package/luci-app-ddnsto
-svn co https://github.com/linkease/nas-packages/trunk/network/services/ddnsto package/ddnsto
+git clone --depth 1 https://github.com/linkease/nas-packages-luci package/nas-luci
+mv package/nas-luci/luci/luci-app-ddnsto package/ 2>/dev/null || true
+rm -rf package/nas-luci
+
+git clone --depth 1 https://github.com/linkease/nas-packages package/nas-packages
+mv package/nas-packages/network/services/ddnsto package/ 2>/dev/null || true
+rm -rf package/nas-packages
 
 # 流量监控
-svn co https://github.com/haiibo/packages/trunk/luci-app-wrtbwmon package/luci-app-wrtbwmon
-svn co https://github.com/haiibo/packages/trunk/wrtbwmon package/wrtbwmon
+git clone --depth 1 https://github.com/haiibo/packages package/wrtbwmon-src
+mv package/wrtbwmon-src/luci-app-wrtbwmon package/ 2>/dev/null || true
+mv package/wrtbwmon-src/wrtbwmon package/ 2>/dev/null || true
+rm -rf package/wrtbwmon-src
 
 # Alist
-svn co https://github.com/sbwml/luci-app-alist/trunk/luci-app-alist package/luci-app-alist
-svn co https://github.com/sbwml/luci-app-alist/trunk/alist package/alist
+git clone --depth 1 https://github.com/sbwml/luci-app-alist package/alist-src
+mv package/alist-src/luci-app-alist package/ 2>/dev/null || true
+mv package/alist-src/alist package/ 2>/dev/null || true
+rm -rf package/alist-src
 
 # iStore
-svn co https://github.com/linkease/istore-ui/trunk/app-store-ui package/app-store-ui
-svn co https://github.com/linkease/istore/trunk/luci package/istore
+git clone --depth 1 https://github.com/linkease/istore-ui package/istore-ui-src
+mv package/istore-ui-src/app-store-ui package/ 2>/dev/null || true
+rm -rf package/istore-ui-src
+
+git clone --depth 1 https://github.com/linkease/istore package/istore-src
+mv package/istore-src/luci package/istore 2>/dev/null || true
+rm -rf package/istore-src
 
 # 在线用户
-svn co https://github.com/haiibo/packages/trunk/luci-app-onliner package/luci-app-onliner
+git clone --depth 1 https://github.com/haiibo/packages package/onliner-src
+mv package/onliner-src/luci-app-onliner package/ 2>/dev/null || true
+rm -rf package/onliner-src
+
 sed -i '/bin\/sh/a\uci set nlbwmon.@nlbwmon[0].refresh_interval=2s' package/lean/default-settings/files/zzz-default-settings
 sed -i '/nlbwmon/a\uci commit nlbwmon' package/lean/default-settings/files/zzz-default-settings
 
